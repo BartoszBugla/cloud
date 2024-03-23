@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  app:
+    image: "oven/bun"
+
+    entrypoint: []
+
+    command: "/bin/sh -c 'bun install && bun run src/index.ts'"
+    
+    ports: ["80:80"]
+
+    volumes: ["./:/home/bun/app"]
