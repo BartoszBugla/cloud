@@ -27,13 +27,3 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/test-app:latest
-      - 
-        name: Trigger pull on vm
-        run: | 
-          echo ${{ secrets.PRIVATE_KEY_BASE64 }} | base64 --decode >> temp.pem
-          chmod 400 temp.pem
-          sudo ssh -i temp.pem ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} \
-          'sudo docker stop $(sudo docker ps -a -q); \
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/test-app:latest; \
-          sudo docker run -dp 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/test-app:latest' \
-          rm -f temp.pem
