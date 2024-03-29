@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 
 export const Route = createLazyFileRoute('/')({
   component: Index,
@@ -8,8 +9,8 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
   return (
-    <div className="p-2">
+    <Card className="p-2 m-auto w-[180px]">
       <Button>Hello world</Button>
-    </div>
+    </Card>
   )
 }

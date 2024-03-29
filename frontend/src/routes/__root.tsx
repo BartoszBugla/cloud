@@ -1,13 +1,16 @@
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
+import { queryClient } from '@/config/query-client'
+
 export const Route = createRootRoute({
   component: () => (
-    <>
-      <div className="p-2 flex gap-2">dsdsds</div>
-      <hr />
+    <QueryClientProvider client={queryClient}>
       <Outlet />
       <TanStackRouterDevtools />
-    </>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   ),
 })
