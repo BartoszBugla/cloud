@@ -5,12 +5,13 @@ const getToken = async () => {
   return ''
 }
 
-export const authRequestMiddleware = async (
-  req: InternalAxiosRequestConfig
-): Promise<InternalAxiosRequestConfig> => {
+export const authRequestMiddleware = async ({
+  disableAuth = false,
+  ...req
+}: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
   const token = await getToken()
 
-  if (token) req.headers.Authorization = `Bearer ${token}`
+  if (!disableAuth && token) req.headers.Authorization = `Bearer ${token}`
 
   return req
 }
